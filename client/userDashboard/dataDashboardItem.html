@@ -1,0 +1,10 @@
+<template name="dataDashboardItem">
+    <li class="list-group-item">
+        <a href="#">
+            {{name}}
+        </a>
+        {{#if showBadge}}
+            <span class="badge">{{numberOfIssues}}</span>
+        {{/if}}
+    </li>
+</template>

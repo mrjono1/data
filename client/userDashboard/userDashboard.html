@@ -1,0 +1,14 @@
+<template name="userDashboard">
+    
+    <div class="container">
+      <p>user dashboard</p>
+      
+      <ul class="list-group">
+        {{#each dataDashboards}}
+          {{> dataDashboardItem}}
+        {{/each}}
+      </ul>
+      
+    </div>
+    
+</template>

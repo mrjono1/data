@@ -1,0 +1,19 @@
+<template name="dataDashboard">
+
+    <div class="container">
+        
+        <p>data dashboard</p>
+        
+        <form>
+            <div class="form-group">
+                <label for="nameInput">Name</label>
+                <input type="text" class="form-control" id="nameInput" value="{{this.name}}">
+            </div>
+            <div class="form-group">
+                <label for="descriptionInput">Description</label>
+                <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description (Optional)">{{this.description}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</template>

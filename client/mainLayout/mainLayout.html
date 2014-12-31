@@ -1,0 +1,14 @@
+<body>
+  {{> mainLayout}}
+</body>
+
+<template name="mainLayout">
+  
+  {{#unless connected}}
+    {{> alert}}
+  {{/unless}}
+  
+  {{> mainMenu}}
+  
+  {{> mainContent dataContext}}
+</template>
