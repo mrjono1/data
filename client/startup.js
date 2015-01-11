@@ -1,8 +1,6 @@
 
 SHOW_CONNECTION_ISSUE_KEY = 'showConnectionIssue';
-
 Session.setDefault(SHOW_CONNECTION_ISSUE_KEY, false);
-
 var CONNECTION_ISSUE_TIMEOUT = 5000;
 
 Meteor.startup(function () {
@@ -13,3 +11,6 @@ Meteor.startup(function () {
     Session.set(SHOW_CONNECTION_ISSUE_KEY, true);
   }, CONNECTION_ISSUE_TIMEOUT);
 });
+
+Meteor.subscribe("entities");
+Meteor.subscribe("properties");

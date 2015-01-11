@@ -1,0 +1,17 @@
+<template name="propertyItem">
+  <li class="list-group-item">
+    {{name}}
+
+    <select>
+      <option value="text">Text</option>
+      <option value="number">Number</option>
+      <option value="date">Date</option>
+      <option value="file">File</option>
+    </select>
+
+    <button type="button" class="btn btn-default pull-right remove">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+
+  </li>
+</template>

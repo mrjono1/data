@@ -1,13 +1,15 @@
 <template name="userDashboard">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
     
     <div class="container">
-      <p>user dashboard</p>
-      
-      <ul class="list-group">
+      <h2>Systems</h2>
+      <div class="list-group">
         {{#each dataDashboards}}
           {{> dataDashboardItem}}
         {{/each}}
-      </ul>
+      </div>
       
     </div>
     

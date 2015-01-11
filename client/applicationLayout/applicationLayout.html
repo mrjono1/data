@@ -1,0 +1,14 @@
+<template name="applicationLayout">
+  
+  {{#unless connected}}
+    {{> alert}}
+  {{/unless}}
+  
+  {{> mainMenu}}
+  
+  {{> yield}}
+</template>
+
+<template name="loading">
+  <h1>Loading...</h1>
+</template>

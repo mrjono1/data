@@ -1,19 +1,34 @@
 <template name="dataDashboard">
-
-    <div class="container">
-        
-        <p>data dashboard</p>
-        
-        <form>
-            <div class="form-group">
-                <label for="nameInput">Name</label>
-                <input type="text" class="form-control" id="nameInput" value="{{this.name}}">
-            </div>
-            <div class="form-group">
-                <label for="descriptionInput">Description</label>
-                <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description (Optional)">{{this.description}}</textarea>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+    <div class="page-header container">
+      
+      <form class="headerClickForm {{showHeaderClickForm}}">
+        <h1>{{data.name}}</h1>
+        <p>{{data.description}}</p>
+      </form>
+      
+      <form class="headerEditForm {{showHeaderEditForm}}">
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input type="text" class="form-control" id="nameInput" value="{{data.name}}">
+        </div>
+        <div class="form-group">
+          <label for="descriptionInput">Description</label>
+          <textarea class="form-control" id="descriptionInput" placeholder="Description (Optional)">{{data.description}}</textarea>
+        </div>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-default cancel-header-edit-form">Cancel</button>
+        </div>
+      </form>
+      
     </div>
+    
+  <div class="container">
+    
+    <div class="list-group">
+      {{#each entities}}
+        {{> entityItem}}
+      {{/each}} 
+    </div>
+  </div>
 </template>
