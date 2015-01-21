@@ -8,13 +8,15 @@ Meteor.methods({
     }
 
     var record = {
-      entityId: value.entityId,
       name: value.name,
       description: value.description,
-      type: value.type
+      typeId: value.typeId,
+      isRequired: value.isRequired
     };
-
+    
     if (value._id == null || value._id == 'new'){
+      record.entityId = value.entityId;
+      
       record._id = Properties.insert(record);
       if (Meteor.isClient){
         Session.set('newId', record._id);

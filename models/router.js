@@ -58,6 +58,9 @@ Router.route('/data/:_id', function() {
 Router.route('/data/:dataDashboardId/:_id', function() {
    
   if (Meteor.userId()){
+    
+    Session.set('showHeaderClickForm', (this.params._id != 'new'));
+    
     this.render('entity', {
       data: {
         _id: this.params._id,

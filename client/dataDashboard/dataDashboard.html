@@ -1,27 +1,35 @@
 <template name="dataDashboard">
-    <div class="page-header container">
-      
-      <form class="headerClickForm {{showHeaderClickForm}}">
-        <h1>{{data.name}}</h1>
-        <p>{{data.description}}</p>
-      </form>
-      
-      <form class="headerEditForm {{showHeaderEditForm}}">
-        <div class="form-group">
-          <label for="nameInput">Name</label>
-          <input type="text" class="form-control" id="nameInput" value="{{data.name}}">
-        </div>
-        <div class="form-group">
-          <label for="descriptionInput">Description</label>
-          <textarea class="form-control" id="descriptionInput" placeholder="Description (Optional)">{{data.description}}</textarea>
-        </div>
-        <div class="pull-right">
-          <button type="submit" class="btn btn-primary">Save</button>
-          <button type="button" class="btn btn-default cancel-header-edit-form">Cancel</button>
-        </div>
-      </form>
-      
-    </div>
+  <div class="page-header container">
+    
+    {{#unless showEditForm}}
+    <form class="d-data-header-form">
+      <h1>{{data.name}}</h1>
+      <p>{{data.description}}</p>
+    </form>
+    {{/unless}}
+    
+    {{#if showEditForm}}
+    <form class="d-data-edit-form">
+      <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input autofocus="autofocus" type="text" class="form-control" id="nameInput" value="{{data.name}}">
+      </div>
+      <div class="form-group">
+        <label for="descriptionInput">Description</label>
+        <textarea class="form-control" id="descriptionInput" placeholder="Description (Optional)">{{data.description}}</textarea>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-success">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+          <span class="sr-only">Save</span>
+        </button>
+        <button type="button" class="btn btn-default cancel-header-edit-form">Cancel</button>
+      </div>
+    </form>
+    {{setFocus}}
+    {{/if}}
+    
+  </div>
     
   <div class="container">
     

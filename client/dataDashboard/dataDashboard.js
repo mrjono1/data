@@ -1,5 +1,10 @@
+Template.dataDashboard.created = function(){
+  this.showEditForm = new ReactiveVar(false);
+};
+
 Template.dataDashboard.helpers({
   data: function() {
+    
     if (this._id == null || this._id == 'new'){
       return {
         _id: this._id,
@@ -18,19 +23,21 @@ Template.dataDashboard.helpers({
       dataDashboardId: this._id
     });
   },
-  showHeaderClickForm: function(){
-    return (Session.get('showHeaderClickForm') ? '' : 'hide');
+  showEditForm: function(){
+    return Template.instance().showEditForm.get();
   },
-  showHeaderEditForm: function(){
-    return (Session.get('showHeaderClickForm') ? 'hide' : '');
+  setFocus: function(){
+    Meteor.defer(function () {
+      $('#nameInput').focus();
+    });
   }
 });
 
 Template.dataDashboard.events({
-  'submit .headerEditForm': function(event, template) {
+  'submit .d-data-edit-form': function(event, template) {
     event.preventDefault();
 
-    Session.set('showHeaderClickForm', true);
+    template.showEditForm.set(false);
     
     var record = Meteor.call("dataDashboardsInsertUpdate",
       this._id,
@@ -41,15 +48,31 @@ Template.dataDashboard.events({
       Router.go('/data/' + Session.get('newId'));
     }
   },
-  'click .headerClickForm': function(event, template){
-    Session.set('showHeaderClickForm', false);
+  'click .d-data-header-form': function(event, template){
+    template.showEditForm.set(true);
   },
   'click .cancel-header-edit-form': function(event, template){
     if (this._id == null || this._id == 'new'){
       window.history.back();
     } else {
-      Session.set('showHeaderClickForm', true);
+    template.showEditForm.set(false);
       //TODO: also need to reload the data helper but not sure how
+    }
+  },
+  'focusout .d-data-edit-form': function (event, template){
+    if ($(event.relatedTarget).parents('.d-data-edit-form').length == 1){
+      return;
+    }
+    
+    template.showEditForm.set(false);
+    
+    var record = Meteor.call("dataDashboardsInsertUpdate",
+      this._id,
+      event.currentTarget.nameInput.value,
+      event.currentTarget.descriptionInput.value);
+
+    if (this._id == 'new') {
+      Router.go('/data/' + Session.get('newId'));
     }
   }
 });
